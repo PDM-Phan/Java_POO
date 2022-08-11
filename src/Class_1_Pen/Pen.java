@@ -57,11 +57,11 @@ public class Pen {
     public void write () {
         
         // conditition to make sure its possible to write...
-        if (getCapped() == true) {
+        if (this.capped == true) {
             System.out.println("The pen is capped, it cant write.");
         } else {
             // then checks if it has any ink left to write...
-            if (getInk() > 0){
+            if (this.ink > 0){
                 System.out.println("Writing...");
                 useInk(-1);
             } else {
@@ -73,7 +73,7 @@ public class Pen {
     public void close () {
         
         // Conditition to make sure its possible to cap the pen...
-        if (getCapped() == true){
+        if (this.capped == true){
             System.out.println("The pen is already capped.");
         } else {
             setCapped(true);
@@ -83,7 +83,7 @@ public class Pen {
     public void open () {
         
         // condition to make sure its to uncap the pen...
-        if (getCapped() == false) {
+        if (this.capped == false) {
             System.out.println("The pen is already uncapped.");
         } else {
             setCapped(false);
