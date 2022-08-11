@@ -11,11 +11,11 @@ public class Pen_Constructor {
                 // collecting the data to create the pen...
                 System.out.println("What is the color of your pen?(String)");
                 String color = input.nextLine();
-                p.color = color;
+                p.setColor(color);
                 
                 System.out.println("What is the model of your pen?(String)");
                 String model = input.nextLine();
-                p.model = model;
+                p.setModel(model);
                 
                 // Loops to handle the error, without interfering with the loop...
                 while (true) {
@@ -28,7 +28,7 @@ public class Pen_Constructor {
                             System.out.println("[ERROR]Please give only right data.\nTry again.\n");
                             continue;
                         }
-                        p.tip = tip;
+                        p.setTip(tip);
                         break;
                     } catch (NumberFormatException ex) {
                         System.out.println("[ERROR]Please give only right data.\nTry again.\n");
@@ -45,7 +45,7 @@ public class Pen_Constructor {
                             System.out.println("Thats impossible.\nTry again.\n");
                             continue;
                         }
-                        p.fill_pen(ink);
+                        p.setInk(ink);
                         break;
                     } catch (NumberFormatException ex) {
                         System.out.println("[ERROR]Please give only right data.\nTry again.\n");
@@ -60,9 +60,9 @@ public class Pen_Constructor {
                         int capped = Integer.parseInt(str_capped);
                         if (capped >= 0 && capped <= 1) {
                             if (capped == 1){
-                                p.open();
+                                p.setCapped(false);
                             } else {
-                                p.close();
+                                p.setCapped(true);
                             }
                         } else {
                             System.out.println("[ERROR]Please type a valid option.\nTry again.\n");
@@ -78,7 +78,7 @@ public class Pen_Constructor {
             case 2 -> {
                 System.out.println("What is the model of your pen?(String)");
                 String model = input.nextLine();
-                p.model = model;
+                p.setModel(model);
                 
                 while (true) {
                     
@@ -90,7 +90,7 @@ public class Pen_Constructor {
                             System.out.println("[ERROR]Please give only right data.\nTry again.\n");
                             continue;
                         }
-                        p.tip = tip;
+                        p.setTip(tip);
                         break;
                     } catch (NumberFormatException ex) {
                         System.out.println("[ERROR]Please give only right data.\nTry again.\n");
@@ -107,7 +107,7 @@ public class Pen_Constructor {
                         System.out.println("Thats impossible.\nTry again.\n");
                         continue;
                     }
-                    p.fill_pen(ink);
+                    p.setInk(ink);
                     break;
                 } catch (NumberFormatException ex) {
                     System.out.println("[ERROR]Please give only right data.\nTry again.\n");
