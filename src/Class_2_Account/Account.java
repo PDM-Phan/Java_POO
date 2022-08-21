@@ -17,32 +17,34 @@ public class Account {
     
     //Methods...
     public void openAccount() {
-        Scanner input = new Scanner(System.in);
-        String account_input;
-        String owner_input;
-        
-        while (true) {
-            System.out.println("Account Number:");
-            account_input = input.nextLine().strip();
-            if ("".equals(account_input)) {
-                System.out.println("Type again.");
-            } else {
-                this.setNumAcc(account_input);
-                break;
+        if (this.getStatus() == false) {
+            Scanner input = new Scanner(System.in);
+            String account_input;
+            String owner_input;
+
+            while (true) {
+                System.out.println("Account Number:");
+                account_input = input.nextLine().strip();
+                if ("".equals(account_input)) {
+                    System.out.println("Type again.");
+                } else {
+                    this.setNumAcc(account_input);
+                    break;
+                }
             }
-        }
-        while (true) {
-            System.out.println("Owner Name:");
-            owner_input = input.nextLine().strip();
-            if ("".equals(owner_input)) {
-                System.out.println("Type again.");
-            } else {
-                this.setOwner(owner_input);
-                break;
+            while (true) {
+                System.out.println("Owner Name:");
+                owner_input = input.nextLine().strip();
+                if ("".equals(owner_input)) {
+                    System.out.println("Type again.");
+                } else {
+                    this.setOwner(owner_input);
+                    break;
+                }
             }
+            this.setStatus(true);
+            this.setBalance(50);
         }
-        this.setStatus(true);
-        this.setBalance(50);
     }
     
     public void closeAccount() {
@@ -52,9 +54,8 @@ public class Account {
             if (this.getBalance() < 0) {
                 System.out.println("Impossible to close this account while in debt.");
             } else {
-                //this.setBalance(0);
-                this.withdrawn(this.getBalance());
                 System.out.println("R$" + this.getBalance() + "has been drawee.");
+                this.withdrawn(this.getBalance());
                 this.setStatus(false);
 
             }
@@ -62,13 +63,26 @@ public class Account {
     }
     
     public void deposit(double value) {
-        double b = this.getBalance();
-        this.setBalance(b + value);
+        if (this.getStatus()) {
+            double b = this.getBalance();
+            this.setBalance(b + value);
+        }
     }
     
     public void withdrawn(double value) {
-        double b = this.getBalance();
-        this.setBalance(b - value);
+        if (this.getStatus()) {
+            double b = this.getBalance();
+            if (value <= b) {
+                this.setBalance(b - value);
+            } else {
+                System.out.println("Insufficent funds.");
+            }
+        }
+    }
+    
+    public void monthlyPay() {
+        if (this.getStatus())
+        this.setBalance(this.getBalance() - 12);
     }
     
     //Getters...

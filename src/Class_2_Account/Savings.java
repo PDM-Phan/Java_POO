@@ -19,32 +19,40 @@ public class Savings extends Account{
     
     @Override
     public void openAccount() {
-        Scanner input = new Scanner(System.in);
-        String account_input;
-        String owner_input;
-        
-        while (true) {
-            System.out.println("Account Number:");
-            account_input = input.nextLine().strip();
-            if ("".equals(account_input)) {
-                System.out.println("Type again.");
-            } else {
-                this.setNumAcc(account_input);
-                break;
+        if (this.getStatus() == false) {
+            Scanner input = new Scanner(System.in);
+            String account_input;
+            String owner_input;
+
+            while (true) {
+                System.out.println("Account Number:");
+                account_input = input.nextLine().strip();
+                if ("".equals(account_input)) {
+                    System.out.println("Type again.");
+                } else {
+                    this.setNumAcc(account_input);
+                    break;
+                }
             }
-        }
-        while (true) {
-            System.out.println("Owner Name:");
-            owner_input = input.nextLine().strip();
-            if ("".equals(owner_input)) {
-                System.out.println("Type again.");
-            } else {
-                this.setOwner(owner_input);
-                break;
+            while (true) {
+                System.out.println("Owner Name:");
+                owner_input = input.nextLine().strip();
+                if ("".equals(owner_input)) {
+                    System.out.println("Type again.");
+                } else {
+                    this.setOwner(owner_input);
+                    break;
+                }
             }
+            this.setStatus(true);
+            this.setBalance(150);
         }
-        this.setStatus(true);
-        this.setBalance(150);
+    }
+    
+    @Override
+    public void monthlyPay() {
+        if (this.getStatus())
+        this.setBalance(this.getBalance() - 20);
     }
     
     @Override
