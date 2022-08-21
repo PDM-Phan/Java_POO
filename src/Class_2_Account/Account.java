@@ -42,14 +42,22 @@ public class Account {
             }
         }
         this.setStatus(true);
+        this.setBalance(50);
     }
     
     public void closeAccount() {
         if (this.getStatus() == false) {
             System.out.println("This account is already invalid.");
         } else {
-            this.setStatus(false);
-            this.setBalance(0);
+            if (this.getBalance() < 0) {
+                System.out.println("Impossible to close this account while in debt.");
+            } else {
+                //this.setBalance(0);
+                this.withdrawn(this.getBalance());
+                System.out.println("R$" + this.getBalance() + "has been drawee.");
+                this.setStatus(false);
+                //this.setBalance(0);
+            }
         }
     }
     
@@ -62,12 +70,14 @@ public class Account {
         double b = this.getBalance();
         this.setBalance(b - value);
     }
-    
-    public void printAccount() {
-        System.out.printf("Account Number: %s\nOwner Name: %s\nBalance: %.2f\nStatus: %b\n",
+    /*
+    Method created before knowing how to use toString() and Override...
+    public String printAccount() {
+        String s = String.format("Account Number: %s\nOwner Name: %s\nBalance: %.2f\nStatus: %b\n",
                 this.getNumAcc(), this.getOwner(), this.getBalance(), this.getStatus());
+        return s;
     }
-    
+    */
     //Getters...
     public String getNumAcc() {
         return this.numAcc;
@@ -100,5 +110,12 @@ public class Account {
     
     public void setStatus(boolean status) {
         this.status = status;
+    }
+    
+    @Override
+    public String toString() {
+        String s = String.format("\nAccount Number: %s\nOwner Name: %s\nBalance: R$%.2f\nStatus: %b\n",
+        this.getNumAcc(), this.getOwner(), this.getBalance(), this.getStatus());
+        return s;
     }
 }
