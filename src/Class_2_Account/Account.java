@@ -56,7 +56,7 @@ public class Account {
                 this.withdrawn(this.getBalance());
                 System.out.println("R$" + this.getBalance() + "has been drawee.");
                 this.setStatus(false);
-                //this.setBalance(0);
+
             }
         }
     }
@@ -70,14 +70,7 @@ public class Account {
         double b = this.getBalance();
         this.setBalance(b - value);
     }
-    /*
-    Method created before knowing how to use toString() and Override...
-    public String printAccount() {
-        String s = String.format("Account Number: %s\nOwner Name: %s\nBalance: %.2f\nStatus: %b\n",
-                this.getNumAcc(), this.getOwner(), this.getBalance(), this.getStatus());
-        return s;
-    }
-    */
+    
     //Getters...
     public String getNumAcc() {
         return this.numAcc;
