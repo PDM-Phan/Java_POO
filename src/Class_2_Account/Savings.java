@@ -17,6 +17,13 @@ public class Savings extends Account{
         this.income = fees;
     }
     
+    public void montlhycalculateIncome(int month) { //Calculate income based on given months...
+        for (int m = 0; m<month; m++) {
+            this.setBalance(this.getBalance() + (this.getBalance() * (this.getIncome()/100)));
+            this.monthlyPay(); //Also considers the method monthlyPay()...
+        }
+    }
+    
     @Override
     public void openAccount() {
         if (this.getStatus() == false) {

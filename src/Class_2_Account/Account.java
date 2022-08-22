@@ -49,7 +49,7 @@ public class Account {
     
     public void closeAccount() {
         if (this.getStatus() == false) {
-            System.out.println("This account is already invalid.");
+            System.out.println("This account is already innactive.");
         } else {
             if (this.getBalance() < 0) {
                 System.out.println("Impossible to close this account while in debt.");
@@ -57,7 +57,7 @@ public class Account {
                 System.out.println("R$" + this.getBalance() + "has been drawee.");
                 this.withdrawn(this.getBalance());
                 this.setStatus(false);
-
+                System.out.println("Account closed.");
             }
         }
     }
