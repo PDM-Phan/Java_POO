@@ -17,7 +17,7 @@ public class Account {
     
     //Methods...
     public void openAccount() {
-        if (this.getStatus() == false) {
+        if (this.getStatus() == false) { //Checking if the account isnt already active. If not...
             Scanner input = new Scanner(System.in);
             String account_input;
             String owner_input;
@@ -43,12 +43,12 @@ public class Account {
                 }
             }
             this.setStatus(true);
-            this.setBalance(50);
+            this.setBalance(50);//Recieve 50 because its a "normal account"...
         }
     }
     
     public void closeAccount() {
-        if (this.getStatus() == false) {
+        if (this.getStatus() == false) {//Checking if this account isnt already inactive. If not..
             System.out.println("This account is already innactive.");
         } else {
             if (this.getBalance() < 0) {
@@ -64,8 +64,7 @@ public class Account {
     
     public void deposit(double value) {
         if (this.getStatus()) {
-            double b = this.getBalance();
-            this.setBalance(b + value);
+            this.setBalance(this.getBalance() + value);
         }
     }
     
@@ -80,7 +79,20 @@ public class Account {
         }
     }
     
-    public void monthlyPay() {
+    public void transfer(Account acc, double value) {
+        if ((this.getStatus()) && (acc.getStatus())) { //Checking if both accounts are active. If not...
+            if (this.getBalance() >= value) {//Making sure that the account sending have enough money to complete the transaction. If not...
+                this.withdrawn(value);
+                acc.deposit(value);
+            } else {
+                System.out.println("Insufficient balance.");
+            }
+        } else {
+            System.out.println("One of the accounts is inactive.");
+        }
+    }
+    
+    public void monthlyPay() { //Value that must be paid each month to keep de account working...
         if (this.getStatus())
         this.setBalance(this.getBalance() - 12);
     }

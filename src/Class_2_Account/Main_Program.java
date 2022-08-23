@@ -16,7 +16,7 @@ public class Main_Program {
         sav.deposit(50);
         sav.montlhycalculateIncome(6);
         System.out.println(sav.toString());
-        acc.closeAccount();
-        sav.closeAccount();
+        acc.closeAccount(); 
+        sav.transfer(acc, 20);
     }
 }

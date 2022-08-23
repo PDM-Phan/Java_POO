@@ -52,14 +52,14 @@ public class Savings extends Account{
                 }
             }
             this.setStatus(true);
-            this.setBalance(150);
+            this.setBalance(150);//Different value, "different" method...
         }
     }
     
     @Override
     public void monthlyPay() {
         if (this.getStatus())
-        this.setBalance(this.getBalance() - 20);
+        this.setBalance(this.getBalance() - 20);//Same here...
     }
     
     @Override
